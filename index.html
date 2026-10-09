@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tidewell Studio – Book an appointment</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="nav">
+    <a class="logo" href="#top">Tidewell Studio</a>
+    <nav>
+      <a href="#services">Services</a>
+      <a href="#book">Book</a>
+      <a href="#bookings">Schedule</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <h1>Slow down.<br>We saved you an hour.</h1>
+      <p>Massage, facials and wellness consultations in a quiet studio. Pick a service, pick a time, done.</p>
+      <a class="btn" href="#book">Book now</a>
+    </section>
+
+    <section id="services" class="section">
+      <h2>Services</h2>
+      <div class="grid">
+        <article class="card"><h3>Deep tissue massage</h3><p>60 minutes of focused work on tight shoulders and backs.</p></article>
+        <article class="card"><h3>Signature facial</h3><p>Cleanse, exfoliate and hydrate, tailored to your skin.</p></article>
+        <article class="card"><h3>Wellness consultation</h3><p>A calm conversation about sleep, stress and a plan that fits.</p></article>
+      </div>
+    </section>
+
+    <section id="book" class="section">
+      <h2>Book an appointment</h2>
+      <form id="booking-form" novalidate>
+        <div class="row">
+          <label>Full name
+            <input type="text" id="full_name" autocomplete="name" required>
+            <small class="field-error" data-for="full_name"></small>
+          </label>
+          <label>Email
+            <input type="email" id="email" autocomplete="email" required>
+            <small class="field-error" data-for="email"></small>
+          </label>
+        </div>
+        <div class="row">
+          <label>Phone number
+            <input type="tel" id="phone" autocomplete="tel" required>
+            <small class="field-error" data-for="phone"></small>
+          </label>
+          <label>Service
+            <select id="service" required>
+              <option value="">Choose a service</option>
+              <option>Deep tissue massage</option>
+              <option>Signature facial</option>
+              <option>Wellness consultation</option>
+            </select>
+            <small class="field-error" data-for="service"></small>
+          </label>
+        </div>
+        <div class="row">
+          <label>Date
+            <input type="date" id="booking_date" required>
+            <small class="field-error" data-for="booking_date"></small>
+          </label>
+          <label>Time
+            <select id="booking_time" required>
+              <option value="">Choose a time</option>
+            </select>
+            <small class="field-error" data-for="booking_time"></small>
+          </label>
+        </div>
+        <label>Additional notes (optional)
+          <textarea id="notes" rows="3"></textarea>
+        </label>
+        <button class="btn" type="submit" id="submit-btn">Book now</button>
+        <div id="message" role="status" aria-live="polite" hidden></div>
+      </form>
+    </section>
+
+    <section id="bookings" class="section">
+      <div class="section-head">
+        <h2>Schedule</h2>
+        <button class="link" id="auth-toggle" type="button">Staff sign in</button>
+      </div>
+
+      <form id="login-form" hidden>
+        <div class="row">
+          <label>Staff email <input type="email" id="login_email" required></label>
+          <label>Password <input type="password" id="login_password" required></label>
+        </div>
+        <button class="btn" type="submit">Sign in</button>
+        <small id="login-error" class="field-error"></small>
+      </form>
+
+      <p id="loading-bookings">Loading bookings…</p>
+      <p id="empty-state" hidden>No bookings yet. Be the first to book a time above.</p>
+      <div class="table-wrap">
+        <table id="bookings-table" hidden>
+          <thead><tr><th>Customer</th><th>Service</th><th>Date</th><th>Time</th><th>Status</th><th class="staff-only" hidden>Actions</th></tr></thead>
+          <tbody id="bookings-body"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Tidewell Studio · Open daily 9:00 – 17:00</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+  <script src="supabase.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
